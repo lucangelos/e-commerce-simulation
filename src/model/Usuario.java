@@ -30,22 +30,33 @@ public class Usuario {
         }
     }
 
-    public boolean alterarEmail (String novoEmail) {
-        if (novoEmail == null || novoEmail.trim().isEmpty() || novoEmail.trim().length() < 3) {
+    public boolean alterarEmail(String novoEmail) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+
+        if (novoEmail == null || novoEmail.trim().isEmpty() || !novoEmail.matches(regex)) {
             return false;
-        } else {
-            this.email = novoEmail;
-            return true;
         }
+        this.email = novoEmail;
+        return true;
     }
 
+
     public boolean alterarSenha (String novaSenha) {
-        if (novaSenha == null || novaSenha.trim().isEmpty() || novaSenha.trim().length() < 3) {
+        if (novaSenha == null || novaSenha.trim().isEmpty() || novaSenha.trim().length() <= 7) {
             return false;
         } else {
             this.senha = novaSenha;
             return true;
         }
+    }
+
+    public boolean alterarCep(Endereco novoEndereco) {
+        if (novoEndereco == null) {
+            return false;
+        }
+
+        this.endereco = novoEndereco;
+        return true;
     }
 
     // GETTERS

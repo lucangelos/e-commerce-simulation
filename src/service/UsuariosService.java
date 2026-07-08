@@ -1,5 +1,6 @@
 package service;
 
+import model.Endereco;
 import model.Usuario;
 
 import java.util.ArrayList;
@@ -73,7 +74,60 @@ public class UsuariosService {
         Usuario.atualizarProximoId(maiorId + 1);
     }
 
-    //Otimizar tempo gasto
+    //Alterações de dados
+
+    public boolean alterarNome (int id, String novoNome) {
+        Usuario usuario = buscarUsuario(id);
+        if (usuario == null) {
+            return false;
+        }
+
+        boolean alterou = usuario.alterarNome(novoNome);
+        if (alterou) {
+            jsonService.salvarUsuarios(usuarios);
+        }
+        return alterou;
+    }
+
+    public boolean alterarSenha (int id, String novaSenha) {
+        Usuario usuario = buscarUsuario(id);
+        if (usuario == null) {
+            return false;
+        }
+
+        boolean alterou = usuario.alterarNome(novaSenha);
+        if (alterou) {
+            jsonService.salvarUsuarios(usuarios);
+        }
+        return alterou;
+    }
+
+    public boolean alterarEmail(int id, String novoEmail) {
+        Usuario usuario = buscarUsuario(id);
+
+        if (usuario == null) {
+            return false;
+        }
+
+        boolean alterou = usuario.alterarNome(novoEmail);
+        if (alterou) {
+            jsonService.salvarUsuarios(usuarios);
+        }
+        return alterou;
+    }
+
+    public boolean alterarCep(int id, Endereco endereco) {
+        Usuario usuario = buscarUsuario(id);
+        if (usuario==null){
+            return false;
+        }
+
+        boolean alterou = usuario.alterarCep(endereco);
+        if (alterou) {
+            jsonService.salvarUsuarios(usuarios);
+        }
+        return alterou;
+    }
 
     // Métodos de validação de dados
 
